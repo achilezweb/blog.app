@@ -17,7 +17,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'title' => fake()->sentence,
+            'body' => fake()->paragraph(rand(2, 6)),
+            //'body' => fake()->text($maxNbChars = 300), // 300 character long text
         ];
     }
 }

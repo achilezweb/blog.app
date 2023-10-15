@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->constrained()->restrictOnDelete(); //user_id
+            //RESTRICT: When a row is deleted from the parent table, the delete operation is aborted if there are any related rows in the child table(s).
+            $table->string('title');
+            $table->longText('body');
             $table->timestamps();
         });
     }
